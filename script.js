@@ -209,16 +209,17 @@ sidebarTitle.setAttribute("title", courseData.description);
 
 // -----------------------------------
 
-// let i = 0;
+let id = 1;
 // 🔻 🔻 🔻 🔻 🔻 🔻 🔻 🔻 🔻 🔻 🔻 🔻 🔻 🔻
 cSections.forEach((sections) => {
   // console.log(cSections);
-  // i++;
 
   const div = document.createElement("div");
   div.className = "lesson";
   div.textContent = sections.title;
   div.setAttribute("title", sections.title);
+  div.setAttribute("data-id", `lesson-${id++}`);
+
   container.append(div);
   // console.log(div);
 
@@ -233,15 +234,30 @@ cSections.forEach((sections) => {
 
 // 🔻 🔻 🔻 🔻 🔻 🔻 🔻 🔻 🔻 🔻 🔻 🔻 🔻 🔻
 const allLessons = document.querySelectorAll(".lesson");
-const firstLesson = document.querySelector(".lesson");
-if (firstLesson) firstLesson.classList.add("active");
+let firstLesson = document.querySelector(".lesson");
+
 allLessons.forEach((e) => {
-  console.log(e);
-  // e.classList.add("active");
+  //! Adding and removing 'active' class
   e.addEventListener("click", () => {
     allLessons.forEach((e) => {
       e.classList.remove("active");
     });
     e.classList.add("active");
+
+    //! STORAGE: Save the text content (the "name" of the lesson)
+    localStorage.setItem("currentLesson", e.getAttribute("data-id"));
   });
 });
+
+//! On Load 🔄️: Check if a lesson was saved before
+let savedLessonId = localStorage.getItem("currentLesson");
+if (savedLessonId) {
+  //! Find the lesson that matches the saved text
+  allLessons.forEach((el) => {
+    if (el.getAttribute("data-id") === savedLessonId) {
+      el.classList.add("active");
+    } else {
+      el.classList.remove("active");
+    }
+  });
+} else if (firstLesson) firstLesson.classList.add("active");
