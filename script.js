@@ -201,14 +201,18 @@ const courseData = {
 // -----------------------------------
 const container = document.querySelector(".sidebar-lesson-listing");
 const sidebarTitle = document.querySelector(".sidebar-title");
+const cSections = courseData.sections;
+
+// -----------------------------------
 sidebarTitle.textContent = courseData.title;
 sidebarTitle.setAttribute("title", courseData.description);
+
 // -----------------------------------
 
 // let i = 0;
 // 🔻 🔻 🔻 🔻 🔻 🔻 🔻 🔻 🔻 🔻 🔻 🔻 🔻 🔻
-courseData.sections.forEach((sections) => {
-  // console.log(courseData.sections[i]);
+cSections.forEach((sections) => {
+  // console.log(cSections);
   // i++;
 
   const div = document.createElement("div");
@@ -216,7 +220,7 @@ courseData.sections.forEach((sections) => {
   div.textContent = sections.title;
   div.setAttribute("title", sections.title);
   container.append(div);
-  console.log(div);
+  // console.log(div);
 
   // -----------------------------------
   let span = document.createElement("span");
@@ -227,3 +231,17 @@ courseData.sections.forEach((sections) => {
   div.append(span);
 });
 
+// 🔻 🔻 🔻 🔻 🔻 🔻 🔻 🔻 🔻 🔻 🔻 🔻 🔻 🔻
+const allLessons = document.querySelectorAll(".lesson");
+const firstLesson = document.querySelector(".lesson");
+if (firstLesson) firstLesson.classList.add("active");
+allLessons.forEach((e) => {
+  console.log(e);
+  // e.classList.add("active");
+  e.addEventListener("click", () => {
+    allLessons.forEach((e) => {
+      e.classList.remove("active");
+    });
+    e.classList.add("active");
+  });
+});

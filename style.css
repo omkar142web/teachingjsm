@@ -99,6 +99,7 @@ html {
   --gap-large: 1.8rem;
 
   /* paddings ------------- */
+  --padding_1: 1rem;
   --padding_1_25: 1.25rem;
   --padding_2: 2rem;
   --padding_1_6: 1.6rem;
@@ -306,7 +307,7 @@ button {
   background: var(--primary);
   color: var(--text-inv);
   border: none;
-  padding: var(--padding_1_25);
+  padding: var(--padding_1);
   border-radius: var(--border-radius-btn);
   cursor: pointer;
   transition:

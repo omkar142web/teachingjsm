@@ -30,16 +30,16 @@
   <body>
     <span class="sidebar-span"
       ><button class="sidebar-toggle-btn" onclick="toggleSideBar()">
-        <img class="img-icon" src="align-left.png" alt=""/></button
+        <img class="img-icon" src="align-left.png" alt="" /></button
     ></span>
     <div class="app">
       <!-- LEFT SIDEBAR -->
 
       <aside class="sidebar-lessons">
-        <h3 class="sidebar-title">Advanced working with functions</h3>
+        <h3 class="sidebar-title">sidebar-title</h3>
 
         <div class="sidebar-lesson-listing">
-          <div class="lesson active">Introduction to the js language</div>
+          <!-- <div class="lesson active">Introduction to the js language</div> -->
         </div>
         <div class="sidebar-last-info">
           <button class="nextBtn btn-primary">
@@ -99,8 +99,9 @@ console.log(grade); // this will print the assigned grade to the console</code>
     </div>
     <script>
       let noteStrong = document.querySelector(".note strong");
-      if (noteStrong) noteStrong.innerText = "Pro Tip!";
+      if (noteStrong) noteStrong.innerText = "Tip !";
 
+      // ----------------------------------
       let js = document.querySelector(".js");
       if (js) js.innerText = "JS";
       let css = document.querySelector(".css");
@@ -108,13 +109,14 @@ console.log(grade); // this will print the assigned grade to the console</code>
       let html = document.querySelector(".html");
       if (html) html.innerText = "HTML";
 
-      // toggleSideBar
+      // toggleSideBar ------------------------
       let sideBar = document.querySelector(".sidebar-lessons");
-
       function toggleSideBar() {
         sideBar.classList.toggle("hidden");
-        console.log("first");
+        // console.log("first");
       }
+
+      // --------------------------------------
     </script>
   </body>
 </html>
