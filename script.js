@@ -251,16 +251,30 @@ allLessons.forEach((e) => {
 
 //! On Load 🔄️: Check if a lesson was saved before
 let savedLessonId = localStorage.getItem("currentLesson");
+
 if (savedLessonId) {
-  //! Find the lesson that matches the saved text
-  allLessons.forEach((el) => {
-    if (el.getAttribute("id") === savedLessonId) {
-      el.classList.add("active");
-    } else {
-      el.classList.remove("active");
+  const activeElement = document.getElementById(savedLessonId);
+  
+  if (activeElement) {
+    // 1. Set active state
+    allLessons.forEach(el => el.classList.remove("active"));
+    activeElement.classList.add("active");
+
+    // 2. THE FIX: Scroll ONLY the sidebar container
+    // We calculate the distance from the top of the container to the element
+    const container = document.querySelector(".sidebar-lesson-listing");
+    
+    if (container) {
+      const elementTop = activeElement.offsetTop;
+      const containerTop = container.offsetTop;
+      
+      // Move the container's scrollbar to that position
+      container.scrollTo({
+        top: elementTop - containerTop, 
+        behavior: "smooth"
+      });
     }
-  });
-  document
-    .querySelector(`#${savedLessonId}`)
-    .scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" });
-} else if (firstLesson) firstLesson.classList.add("active");
+  }
+} else if (firstLesson) {
+  firstLesson.classList.add("active");
+}
