@@ -334,15 +334,15 @@ button {
 /* sidebar span */
 .sidebar-span {
   position: absolute;
-  top: 1rem;
-  right: 1rem;
+  top: 1.25rem;
+  right: 1.25rem;
 }
 /* sidebar btn */
 .sidebar-toggle-btn {
-  padding: 1rem;
-  background: var(--primary);
+  padding: 0.6rem 0.8rem 0.5rem;
+  background: #7373d1e8;
   font-size: var(--font-size-base);
-  color: var(--text-inv);
+  color: var(--text-title-sidebar);
   border: none;
   border-radius: var(--border-radius-btn);
   cursor: pointer;
@@ -353,7 +353,7 @@ button {
 }
 @media (hover: hover) {
   .sidebar-toggle-btn:hover {
-    background: #7f40fcd0;
+    background: #a9a9eb;
   }
 }
 

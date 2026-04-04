@@ -23,6 +23,10 @@
 .fa-angle-right {
   font-size: 1.5rem;
 }
+.img-icon{
+  height: 2rem;
+  width: 2rem;
+}
 
 /* language icons */
 .lang-icon {
