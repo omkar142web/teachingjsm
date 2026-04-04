@@ -64,6 +64,10 @@
   transform: rotate(90deg);
 }
 
+.active .lesson-arrow-sp{
+  color: var(--primary);
+}
+
 /* ( all transition ) Add transition to the icon itself for smooth spinning */
 .lesson {
   transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
@@ -71,6 +75,7 @@
 .lesson-arrow-sp i {
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
+/* ------------------------ */
 
 @media (hover: hover) {
   .lesson:hover {
