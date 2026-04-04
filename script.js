@@ -218,7 +218,7 @@ cSections.forEach((sections) => {
   div.className = "lesson";
   div.textContent = sections.title;
   div.setAttribute("title", sections.title);
-  div.setAttribute("data-id", `lesson-${id++}`);
+  div.setAttribute("id", `js-lesson-${id++}`);
 
   container.append(div);
   // console.log(div);
@@ -245,7 +245,7 @@ allLessons.forEach((e) => {
     e.classList.add("active");
 
     //! STORAGE: Save the text content (the "name" of the lesson)
-    localStorage.setItem("currentLesson", e.getAttribute("data-id"));
+    localStorage.setItem("currentLesson", e.getAttribute("id"));
   });
 });
 
@@ -254,10 +254,13 @@ let savedLessonId = localStorage.getItem("currentLesson");
 if (savedLessonId) {
   //! Find the lesson that matches the saved text
   allLessons.forEach((el) => {
-    if (el.getAttribute("data-id") === savedLessonId) {
+    if (el.getAttribute("id") === savedLessonId) {
       el.classList.add("active");
     } else {
       el.classList.remove("active");
     }
   });
+  document
+    .querySelector(`#${savedLessonId}`)
+    .scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" });
 } else if (firstLesson) firstLesson.classList.add("active");
