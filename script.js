@@ -1,123 +1,229 @@
-const courseData = [
-  {
-    part: "Part 1",
-    title: "The JavaScript Language",
-    sections: [
-      {
-        title: "An Introduction !",
-        lessons: [
-          "An Introduction to JavaScript",
-          "Manuals and specifications",
-          "Code editors",
-          "Developer console",
-        ],
-      },
-      {
-        title: "JavaScript Fundamentals",
-        lessons: [
-          "Hello, world!",
-          "Code structure",
-          "use strict",
-          "Variables",
-          "Data types",
-          "Alert, prompt, confirm",
-          "Type Conversions",
-          "Operators",
-          "Comparisons",
-          "Conditionals",
-          "Logical operators",
-          "Nullish coalescing",
-          "Loops",
-          "Switch",
-          "Functions",
-          "Arrow functions",
-        ],
-      },
-      {
-        title: "Objects",
-        lessons: [
-          "Objects",
-          "Object references",
-          "Garbage collection",
-          "Object methods",
-          "Constructor",
-          "Optional chaining",
-          "Symbol type",
-        ],
-      },
-    ],
-  },
+const courseData = {
+  title: "The JavaScript Language",
+  description:
+    "Learn JavaScript from scratch to advanced concepts like OOP, async programming, and browser APIs.",
 
-  {
-    part: "Part 2",
-    title: "Browser",
-    sections: [
-      {
-        title: "Document",
-        lessons: [
-          "DOM tree",
-          "Searching DOM",
-          "Node properties",
-          "Attributes",
-          "Modifying document",
-        ],
-      },
-      {
-        title: "Events",
-        lessons: [
-          "Introduction to events",
-          "Bubbling and capturing",
-          "Event delegation",
-          "Mouse events",
-          "Keyboard events",
-        ],
-      },
-    ],
-  },
+  sections: [
+    {
+      title: "Introduction",
+      lessons: [
+        "An Introduction to JavaScript",
+        "Manuals and specifications",
+        "Code editors",
+        "Developer console",
+      ],
+    },
 
-  {
-    part: "Part 3",
-    title: "Advanced Topics",
-    sections: [
-      {
-        title: "Async JavaScript",
-        lessons: ["Callbacks", "Promises", "Async/Await"],
-      },
-      {
-        title: "Networking",
-        lessons: ["Fetch API", "WebSocket", "XMLHttpRequest"],
-      },
-    ],
-  },
-];
+    {
+      title: "JavaScript Fundamentals",
+      lessons: [
+        "Hello, world!",
+        "Code structure",
+        "use strict",
+        "Variables",
+        "Data types",
+        "Alert, prompt, confirm",
+        "Type Conversions",
+        "Operators",
+        "Comparisons",
+        "Conditionals",
+        "Logical operators",
+        "Nullish coalescing (??)",
+        "Loops",
+        "Switch",
+        "Functions",
+        "Function expressions",
+        "Arrow functions",
+      ],
+    },
 
+    {
+      title: "Code Quality & Debugging",
+      lessons: [
+        "Code quality",
+        "Debugging in browser",
+        "Coding style",
+        "Comments",
+        "Ninja code",
+        "Testing with Mocha",
+        "Polyfills & transpilers",
+      ],
+    },
+
+    {
+      title: "Objects & Data Types",
+      lessons: [
+        "Objects",
+        "Object references & copying",
+        "Garbage collection",
+        "Object methods",
+        "Constructor (new)",
+        "Optional chaining",
+        "Symbol type",
+        "Object to primitive",
+      ],
+    },
+
+    {
+      title: "Advanced Data Types",
+      lessons: [
+        "Methods of primitives",
+        "Numbers",
+        "Strings",
+        "Arrays",
+        "Array methods",
+        "Map & Set",
+        "WeakMap & WeakSet",
+        "Object.keys, values, entries",
+        "Destructuring",
+        "Date & Time",
+        "JSON methods",
+      ],
+    },
+
+    {
+      title: "Advanced Functions",
+      lessons: [
+        "Recursion & stack",
+        "Rest & spread",
+        "Closures",
+        "var keyword",
+        "Global object",
+        "Function object",
+        "new Function",
+        "setTimeout / setInterval",
+        "call/apply",
+        "bind",
+        "Arrow functions revisited",
+      ],
+    },
+
+    {
+      title: "OOP & Prototypes",
+      lessons: [
+        "Property flags",
+        "Getters & setters",
+        "Prototypal inheritance",
+        "F.prototype",
+        "Native prototypes",
+        "Classes",
+        "Class inheritance",
+        "Static methods",
+        "Private properties",
+        "instanceof",
+        "Mixins",
+      ],
+    },
+
+    {
+      title: "Error Handling",
+      lessons: ["try...catch", "Custom errors"],
+    },
+
+    {
+      title: "Async JavaScript",
+      lessons: [
+        "Callbacks",
+        "Promises",
+        "Promise chaining",
+        "Error handling in promises",
+        "Promise API",
+        "Async/Await",
+        "Microtasks",
+      ],
+    },
+
+    {
+      title: "Advanced Concepts",
+      lessons: [
+        "Generators",
+        "Async iteration",
+        "Modules",
+        "Dynamic imports",
+        "Proxy & Reflect",
+        "Currying",
+        "BigInt",
+      ],
+    },
+
+    {
+      title: "DOM & Browser",
+      lessons: [
+        "DOM tree",
+        "Searching DOM",
+        "Node properties",
+        "Attributes & properties",
+        "Modifying document",
+        "Styles & classes",
+        "Element size & scrolling",
+      ],
+    },
+
+    {
+      title: "Events",
+      lessons: [
+        "Introduction to events",
+        "Bubbling & capturing",
+        "Event delegation",
+        "Mouse events",
+        "Keyboard events",
+        "Forms & input events",
+      ],
+    },
+
+    {
+      title: "Networking",
+      lessons: [
+        "Fetch API",
+        "XMLHttpRequest",
+        "WebSocket",
+        "Server Sent Events",
+      ],
+    },
+
+    {
+      title: "Storage & Browser APIs",
+      lessons: ["Cookies", "LocalStorage", "SessionStorage", "IndexedDB"],
+    },
+
+    {
+      title: "Advanced Topics",
+      lessons: [
+        "Web Components",
+        "Shadow DOM",
+        "Animation",
+        "Regular Expressions",
+      ],
+    },
+  ],
+};
+
+// -----------------------------------
 const container = document.querySelector(".sidebar-lesson-listing");
-const h3 = document.querySelector(".sidebar-title");
+const sidebarTitle = document.querySelector(".sidebar-title");
+sidebarTitle.textContent = courseData.title;
+sidebarTitle.setAttribute("title", courseData.description);
+// -----------------------------------
 
-courseData[0].sections[1].lessons.forEach((lesson) => {
-  h3.textContent = courseData[0].sections[1].title;
+// let i = 0;
+// 🔻 🔻 🔻 🔻 🔻 🔻 🔻 🔻 🔻 🔻 🔻 🔻 🔻 🔻
+courseData.sections.forEach((sections) => {
+  // console.log(courseData.sections[i]);
+  // i++;
+
   const div = document.createElement("div");
   div.className = "lesson";
-  div.textContent = lesson;
+  div.textContent = sections.title;
+  div.setAttribute("title", sections.title);
   container.append(div);
-});
+  console.log(div);
 
-// -----------------------------------
-let lesson = document.querySelectorAll(".lesson");
-
-lesson.forEach((el) => {
-  // 1. Create the element
+  // -----------------------------------
   let span = document.createElement("span");
   span.className = "lesson-arrow-sp";
-
-  // 2. Set the internal HTML (Corrected the FA class if needed)
   span.innerHTML = `<i class="fa-solid fa-angle-right"></i>`;
 
-  // 3. Append the VARIABLE, not the string "span"
-  el.append(span);
+  // -----------------------------------
+  div.append(span);
 });
 
-// -----------------------------------
-
-
-// -----------------------------------
