@@ -317,9 +317,11 @@ button {
   -moz-osx-font-smoothing: grayscale;
 }
 
-.btn-primary:hover {
-  background: #7f40fcd0;
-  transform: translateY(-2px);
+@media (hover: hover) {
+  .btn-primary:hover {
+    background: #7f40fcd0;
+    transform: translateY(-2px);
+  }
 }
 
 .nextBtn {
@@ -349,8 +351,10 @@ button {
     transform 0.1s ease-in-out;
   backface-visibility: hidden;
 }
-.sidebar-toggle-btn:hover {
-  background: #7f40fcd0;
+@media (hover: hover) {
+  .sidebar-toggle-btn:hover {
+    background: #7f40fcd0;
+  }
 }
 
 /* sidebar display */
