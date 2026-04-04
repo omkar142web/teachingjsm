@@ -1,0 +1,108 @@
+.sidebar-title {
+  padding: var(--padding_2) var(--padding_1_25);
+  font-size: var(--heading-font-size);
+  font-weight: var(--heading-font-weight);
+  color: var(--text-title-sidebar);
+  text-transform: uppercase;
+  text-align: center;
+  border-bottom: var(--borderlines);
+  line-height: 1.4;
+}
+
+/* lessons */
+.sidebar-lessons {
+  max-height: 100vh;
+  /* overflow-y: auto; */
+  position: sticky;
+  top: 0;
+  left: 0;
+
+  width: 25rem;
+  background: var(--bg-sidebar);
+  height: 100%;
+  border-right: var(--borderlines);
+  display: flex;
+  flex-direction: column;
+}
+.sidebar-lesson-listing {
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+/* .sidebar-lesson-listing :first-child { */
+/* margin-top: 1rem; */
+/* see later */
+/* } */
+
+.lesson {
+  padding: 0.75rem var(--padding_2_5) 0.75rem var(--padding_1_6);
+  border-radius: 1px;
+  cursor: pointer;
+  transition: background 0.3s;
+  font-size: var(--font-size-small);
+  color: var(--text-muted);
+  text-transform: capitalize;
+  min-height: min-content;
+  white-space: nowrap;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+  /* --------------------- */
+  position: relative;
+}
+
+.lesson-arrow-sp {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 1.5rem;
+  color: var(--text-muted);
+  font-size: 1.5rem;
+}
+.lesson.active i[class*="fa-angle-"] {
+  transform: rotate(90deg);
+}
+
+.lesson:hover {
+  background: var(--lesson-hover);
+}
+
+.lesson.active {
+  background: var(--lesson-active);
+  color: #efefef;
+  border-left: 2px solid #8e5eed;
+  font-size: 1.5rem;
+}
+
+.sidebar-last-info {
+  padding: var(--padding_2);
+  border-top: var(--borderlines);
+  display: flex;
+  justify-content: center;
+}
+
+/* Update your sidebar base styles */
+aside {
+  transition:
+    transform 0.4s cubic-bezier(0.25, 1, 0.5, 1),
+    width 0.4s cubic-bezier(0.25, 1, 0.5, 1),
+    opacity 0.4s ease,
+    visibility 0.4s;
+  opacity: 1;
+  visibility: visible;
+  overflow: hidden;
+}
+
+aside.hidden {
+  transform: translateX(-100%); /* Slide it off-screen */
+  width: 0; /* Shrink space for content reflow */
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* Ensure the main content takes up the rest of the space smoothly */
+.content {
+  transition: all 0.4s ease;
+  /* transition: flex 0.4s ease, padding 0.4s ease; */
+}
