@@ -273,6 +273,7 @@ button {
   /* 768px */
   .app {
     flex-direction: row;
+    flex-direction: column;
   }
 
   .sidebar-lessons {
@@ -290,10 +291,10 @@ button {
     position: sticky;
     height: 100vh;
   }
-  .app {
+  /* .app {
     height: 100vh;
     overflow: hidden;
-  }
+  } */
 
   aside .lesson {
     padding: 0.75rem 1rem 0.75rem 4.7rem;
