@@ -28,7 +28,7 @@
     <script src="script.js" defer></script>
   </head>
   <body>
-    <span class="sidebar-span"
+    <span title="Use ( F ) shortcut" class="sidebar-span"
       ><button class="sidebar-toggle-btn" onclick="toggleSideBar()">
         <img class="img-icon" src="align-left.png" alt="" /></button
     ></span>
@@ -122,6 +122,11 @@ console.log(grade); // this will print the assigned grade to the console</code>
         sideBar.classList.toggle("hidden");
         // console.log("first");
       }
+      document.addEventListener("keypress", (e) => {
+        if (e.key == "f") {
+          toggleSideBar();
+        }
+      });
 
       // --------------------------------------
     </script>
