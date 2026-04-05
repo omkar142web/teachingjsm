@@ -194,7 +194,7 @@ pre[class*="language-"] {
   justify-content: center;
   text-align: center;
   padding: 3rem 2rem;
-  margin-top: 4rem;
+  margin-top: 1.5rem;
   background: var(--bg-card-1);
   border: var(--borderlines-content);
   border-radius: var(--border-radius-card);
