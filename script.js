@@ -254,29 +254,52 @@ let savedLessonId = localStorage.getItem("currentLesson");
 
 if (savedLessonId) {
   const activeElement = document.getElementById(savedLessonId);
-  
+
   if (activeElement) {
     //! 1. Set active state
-    allLessons.forEach(el => el.classList.remove("active"));
+    allLessons.forEach((el) => el.classList.remove("active"));
     activeElement.classList.add("active");
 
     //! 2. THE FIX: Scroll ONLY the sidebar container
     // We calculate the distance from the top of the container to the element
     const container = document.querySelector(".sidebar-lesson-listing");
-    
+
     if (container) {
-      const elementTop = activeElement.offsetTop;
-      const containerTop = container.offsetTop;
-      const centerOffset = container.clientHeight / 2;
-      
-      //! Move the container's scrollbar to that position
-      container.scrollTo({
-        // top: elementTop - containerTop, 
-        top: elementTop - centerOffset,
-        behavior: "smooth"
-      });
+      setTimeout(() => {
+        // Change 1500 to make it even slower (in milliseconds)
+        slowScrollTo(activeElement, container, 1500);
+      }, 400); // Slightly longer wait to let the sidebar 'aside' transition finish
     }
   }
 } else if (firstLesson) {
   firstLesson.classList.add("active");
+}
+
+function slowScrollTo(element, container, duration = 1000) {
+  const containerTop = container.offsetTop;
+  const elementTop = element.offsetTop;
+  const centerOffset = container.clientHeight / 2;
+
+  // The exact pixel we want to reach
+  const target = elementTop - containerTop - centerOffset;
+  const start = container.scrollTop;
+  const change = target - start;
+  let startTime = null;
+
+  function animateScroll(currentTime) {
+    if (startTime === null) startTime = currentTime;
+    const timeElapsed = currentTime - startTime;
+
+    // Easing Function: Make it start fast and slow down at the end (Out-Cubic)
+    const progress = Math.min(timeElapsed / duration, 1);
+    const ease = 1 - Math.pow(1 - progress, 3);
+
+    container.scrollTop = start + change * ease;
+
+    if (timeElapsed < duration) {
+      requestAnimationFrame(animateScroll);
+    }
+  }
+
+  requestAnimationFrame(animateScroll);
 }
