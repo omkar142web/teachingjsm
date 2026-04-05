@@ -511,7 +511,7 @@ function renderLesson(lessonId) {
     }
   });
   if (window.Prism) {
-  Prism.highlightAllUnder(mainContent);
-}
+    Prism.highlightAllUnder(mainContent);
+  }
 }
 //  renderLesson('js-lesson-1');
