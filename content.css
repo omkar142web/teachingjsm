@@ -222,12 +222,11 @@ pre[class*="language-"] {
 }
 
 .progress-fill {
-  width: 60%; 
+  width: 60%;
   height: 100%;
   background: linear-gradient(135deg, #ff5d8f, #383eff);
   border-radius: 10px;
   box-shadow: 0 0 10px var(--primary);
 }
-
 
 /* 🔺 🔺 🔺 🔺 🔺 🔺 🔺 🔺 🔺 🔺 🔺 🔺 */

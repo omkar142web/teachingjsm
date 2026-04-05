@@ -1,4 +1,4 @@
-import { lessonsContent } from './data.js';
+import { lessonsContent } from "./data.js";
 
 const courseData = {
   title: "The JavaScript Language",
@@ -246,7 +246,6 @@ allLessons.forEach((e) => {
     });
     e.classList.add("active");
     renderLesson(e.getAttribute("id"));
-    
 
     //! STORAGE: Save the text content (the "name" of the lesson)
     localStorage.setItem("currentLesson", e.getAttribute("id"));
@@ -311,8 +310,6 @@ function slowScrollTo(element, container, duration = 1000) {
 
   requestAnimationFrame(animateScroll);
 }
- 
-
 
 // ! data / content realated here
 function renderLesson(lessonId) {
@@ -515,4 +512,3 @@ function renderLesson(lessonId) {
   });
 }
 //  renderLesson('js-lesson-1');
-
