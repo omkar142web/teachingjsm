@@ -89,7 +89,6 @@ html {
     #00d2ffe6 100%
   );
 
-
   /* shadows */
   --shadow-neon: 0 0 20px #00d0ff18;
 
@@ -273,7 +272,7 @@ button {
 @media screen and (max-width: 815px) {
   /* 768px */
   .app {
-    flex-direction: column;
+    flex-direction: row;
   }
 
   .sidebar-lessons {
@@ -286,8 +285,14 @@ button {
 
   aside.sidebar-lessons {
     border-right: none;
-    position: relative;
-    max-height: max(60rem, 40vh);
+    /* position: relative; */
+    /* max-height: max(60rem, 40vh); */
+    position: sticky;
+    height: 100vh;
+  }
+  .app {
+    height: 100vh;
+    overflow: hidden;
   }
 
   aside .lesson {
@@ -297,8 +302,14 @@ button {
     left: 2rem;
   }
 
-  .sidebar-span,
-  .sidebar-toggle-btn {
+  .code-wrapper .lang-icon {
+    font-size: 1rem;
+    top: 5px;
+    right: 5px;
+    border-radius: 8px;
+  }
+
+  .sidebar-lessons.hidden {
     display: none;
   }
 }
@@ -344,9 +355,10 @@ button {
 
 /* sidebar span */
 .sidebar-span {
-  position: absolute;
+  position: fixed;
   top: 1.25rem;
   right: 1.25rem;
+  z-index: 99;
 }
 /* sidebar btn */
 .sidebar-toggle-btn {
