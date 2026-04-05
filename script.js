@@ -1,3 +1,5 @@
+import { lessonsContent } from './data.js';
+
 const courseData = {
   title: "The JavaScript Language",
   description:
@@ -210,7 +212,7 @@ sidebarTitle.setAttribute("title", courseData.description);
 // -----------------------------------
 
 let id = 1;
-// 🔻 🔻 🔻 🔻 🔻 🔻 🔻 🔻 🔻 🔻 🔻 🔻 🔻 🔻
+// start from here 🔻 🔻 🔻 🔻 🔻 🔻 🔻
 cSections.forEach((sections) => {
   // console.log(cSections);
 
@@ -243,6 +245,8 @@ allLessons.forEach((e) => {
       e.classList.remove("active");
     });
     e.classList.add("active");
+    renderLesson(e.getAttribute("id"));
+    
 
     //! STORAGE: Save the text content (the "name" of the lesson)
     localStorage.setItem("currentLesson", e.getAttribute("id"));
@@ -254,6 +258,8 @@ let savedLessonId = localStorage.getItem("currentLesson");
 
 if (savedLessonId) {
   const activeElement = document.getElementById(savedLessonId);
+
+  renderLesson(savedLessonId);
 
   if (activeElement) {
     //! 1. Set active state
@@ -271,10 +277,12 @@ if (savedLessonId) {
       }, 400); // Slightly longer wait to let the sidebar 'aside' transition finish
     }
   }
-} else if (firstLesson) {
+} else {
   firstLesson.classList.add("active");
+  renderLesson(firstLesson.getAttribute("id"));
 }
 
+//! scroll fucntion 🔻 🔻 🔻 🔻 🔻 🔻
 function slowScrollTo(element, container, duration = 1000) {
   const containerTop = container.offsetTop;
   const elementTop = element.offsetTop;
@@ -303,3 +311,208 @@ function slowScrollTo(element, container, duration = 1000) {
 
   requestAnimationFrame(animateScroll);
 }
+ 
+
+
+// ! data / content realated here
+function renderLesson(lessonId) {
+  const data = lessonsContent[lessonId];
+  const mainContent = document.querySelector(".content");
+
+  if (!data) {
+    mainContent.innerHTML = ""; // Clear existing
+
+    const emptyState = document.createElement("div");
+    emptyState.className = "coming-soon-card";
+
+    emptyState.innerHTML = `
+      <div class="coming-soon-icon">
+        <i class="fa-solid fa-screwdriver-wrench"></i>
+      </div>
+      <h2 class="content-title">Chapter Under Construction</h2>
+      <p class="desc">We're currently brewing some fresh JavaScript knowledge for this section. Check back soon!</p>
+      <div class="progress-bar-mini">
+        <div class="progress-fill"></div>
+      </div>
+      <button class="btn-primary" onclick="location.reload()">Refresh Page</button>
+    `;
+
+    mainContent.appendChild(emptyState);
+    return;
+  }
+
+  mainContent.innerHTML = "";
+
+  const title = document.createElement("h1");
+  title.className = "content-title";
+  title.textContent = data.title;
+  mainContent.appendChild(title);
+
+  data.blocks.forEach((block) => {
+    switch (block.type) {
+      case "heading": {
+        const h2 = document.createElement("h2");
+        h2.className = "section-heading";
+        h2.textContent = block.content;
+        mainContent.appendChild(h2);
+        break;
+      }
+
+      case "text": {
+        const p = document.createElement("p");
+        p.className = "desc";
+        p.textContent = block.content;
+        mainContent.appendChild(p);
+        break;
+      }
+
+      case "example": {
+        const exampleDiv = document.createElement("div");
+        exampleDiv.className = "example-div";
+
+        const tagDiv = document.createElement("div");
+        tagDiv.className = "example-div-tag";
+
+        const iconSpan = document.createElement("span");
+        iconSpan.className = "example-icon info-icon";
+        const icon = document.createElement("i");
+        icon.className = "fa-solid fa-code";
+        iconSpan.appendChild(icon);
+
+        const titleSpan = document.createElement("span");
+        titleSpan.className = "example-title info-text";
+        titleSpan.textContent = "Example";
+
+        tagDiv.appendChild(iconSpan);
+        tagDiv.appendChild(titleSpan);
+
+        const codeWrapper = document.createElement("div");
+        codeWrapper.className = "code-wrapper";
+
+        const langSpan = document.createElement("span");
+        langSpan.className = `lang-icon ${block.lang}`;
+        langSpan.textContent = block.lang ? block.lang.toUpperCase() : "JS";
+
+        const pre = document.createElement("pre");
+        pre.className = `code-block lang-${block.lang || "js"}`;
+
+        const code = document.createElement("code");
+        code.textContent = block.code;
+
+        pre.appendChild(code);
+        codeWrapper.appendChild(langSpan);
+        codeWrapper.appendChild(pre);
+
+        exampleDiv.appendChild(tagDiv);
+        exampleDiv.appendChild(codeWrapper);
+
+        mainContent.appendChild(exampleDiv);
+        break;
+      }
+
+      case "note": {
+        const noteDiv = document.createElement("div");
+        noteDiv.className = "note";
+
+        const noteTag = document.createElement("div");
+        noteTag.className = "note-tag";
+
+        const noteIcon = document.createElement("span");
+        noteIcon.className = "note-icon info-icon";
+        const bulbIcon = document.createElement("i");
+        bulbIcon.className = "fa-regular fa-lightbulb";
+        noteIcon.appendChild(bulbIcon);
+
+        const strong = document.createElement("strong");
+        strong.className = "info-text";
+        strong.textContent = block.title || "Tip!";
+
+        noteTag.appendChild(noteIcon);
+        noteTag.appendChild(strong);
+
+        const noteP = document.createElement("p");
+        noteP.textContent = block.content;
+
+        noteDiv.appendChild(noteTag);
+        noteDiv.appendChild(noteP);
+
+        mainContent.appendChild(noteDiv);
+        break;
+      }
+
+      case "list": {
+        const ul = document.createElement("ul");
+        ul.className = "desc-list";
+
+        block.items.forEach((itemText) => {
+          const li = document.createElement("li");
+          li.textContent = itemText;
+          ul.appendChild(li);
+        });
+
+        mainContent.appendChild(ul);
+        break;
+      }
+
+      case "image": {
+        const figure = document.createElement("figure");
+        figure.className = "content-image";
+
+        const img = document.createElement("img");
+        img.src = block.src;
+        img.alt = block.alt || "";
+
+        if (block.caption) {
+          const figcaption = document.createElement("figcaption");
+          figcaption.textContent = block.caption;
+          figure.appendChild(img);
+          figure.appendChild(figcaption);
+        } else {
+          figure.appendChild(img);
+        }
+
+        mainContent.appendChild(figure);
+        break;
+      }
+
+      case "divider": {
+        const hr = document.createElement("hr");
+        hr.className = "content-divider";
+        mainContent.appendChild(hr);
+        break;
+      }
+
+      case "table": {
+        const table = document.createElement("table");
+        table.className = "content-table";
+
+        const thead = document.createElement("thead");
+        const headerRow = document.createElement("tr");
+        block.headers.forEach((headerText) => {
+          const th = document.createElement("th");
+          th.textContent = headerText;
+          headerRow.appendChild(th);
+        });
+        thead.appendChild(headerRow);
+
+        const tbody = document.createElement("tbody");
+        block.rows.forEach((rowData) => {
+          const tr = document.createElement("tr");
+          rowData.forEach((cellText) => {
+            const td = document.createElement("td");
+            td.textContent = cellText;
+            tr.appendChild(td);
+          });
+          tbody.appendChild(tr);
+        });
+
+        table.appendChild(thead);
+        table.appendChild(tbody);
+        mainContent.appendChild(table);
+        break;
+      }
+    }
+  });
+}
+//  renderLesson('js-lesson-1');
+

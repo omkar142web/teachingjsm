@@ -23,7 +23,7 @@
 .fa-angle-right {
   font-size: 1.5rem;
 }
-.img-icon{
+.img-icon {
   height: 2rem;
   width: 2rem;
 }
@@ -179,4 +179,55 @@ pre[class*="language-"] {
   color: var(--text-muted-light);
 }
 
-/* example */
+/* content divider */
+.content-divider {
+  background: var(--content-divider-gradient);
+  border: none;
+  padding: 1px;
+}
+
+/* 🔻 🔻 🔻 🔻 🔻 🔻 🔻 🔻 🔻 🔻 🔻 🔻 🔻 */
+.coming-soon-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 3rem 2rem;
+  margin-top: 4rem;
+  background: var(--bg-card-1);
+  border: var(--borderlines-content);
+  border-radius: var(--border-radius-card);
+  box-shadow: var(--shadow-neon);
+  backdrop-filter: blur(10px);
+  gap: 2rem;
+}
+
+.coming-soon-icon {
+  font-size: 5rem;
+  background: var(--horizontal-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.progress-bar-mini {
+  width: 200px;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.progress-fill {
+  width: 60%; 
+  height: 100%;
+  background: linear-gradient(135deg, #ff5d8f, #383eff);
+  border-radius: 10px;
+  box-shadow: 0 0 10px var(--primary);
+}
+
+
+/* 🔺 🔺 🔺 🔺 🔺 🔺 🔺 🔺 🔺 🔺 🔺 🔺 */
