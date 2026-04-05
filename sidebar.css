@@ -1,3 +1,30 @@
+/* Update your sidebar base styles */
+aside {
+  transform: translateX(0);
+  transition:
+    transform 0.4s cubic-bezier(0.25, 1, 0.5, 1),
+    width 0.6s cubic-bezier(0.25, 1, 0.5, 1),
+    opacity 0.4s ease,
+    visibility 0.4s;
+  opacity: 1;
+  visibility: visible;
+  overflow: hidden;
+}
+
+aside.hidden {
+  transform: translateX(-100%); /* Slide it off-screen */
+  width: 0; /* Shrink space for content reflow */
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* Ensure the main content takes up the rest of the space smoothly */
+.content {
+  transition: all 0.4s ease;
+  /* transition: flex 0.4s ease, padding 0.4s ease; */
+}
+
 .sidebar-title {
   padding: var(--padding_2) var(--padding_1_25);
   font-size: var(--heading-font-size);
@@ -64,11 +91,11 @@
   transform: rotate(90deg);
 }
 
-.active .lesson-arrow-sp{
+.active .lesson-arrow-sp {
   color: var(--primary);
 }
 
-/* ( all transition ) Add transition to the icon itself for smooth spinning */
+/* ( all transition - onlcick , hover or class change) Add transition to the icon itself for smooth spinning */
 .lesson {
   transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -95,30 +122,4 @@
   border-top: var(--borderlines);
   display: flex;
   justify-content: center;
-}
-
-/* Update your sidebar base styles */
-aside {
-  transition:
-    transform 0.4s cubic-bezier(0.25, 1, 0.5, 1),
-    width 0.4s cubic-bezier(0.25, 1, 0.5, 1),
-    opacity 0.4s ease,
-    visibility 0.4s;
-  opacity: 1;
-  visibility: visible;
-  overflow: hidden;
-}
-
-aside.hidden {
-  transform: translateX(-100%); /* Slide it off-screen */
-  width: 0; /* Shrink space for content reflow */
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-}
-
-/* Ensure the main content takes up the rest of the space smoothly */
-.content {
-  transition: all 0.4s ease;
-  /* transition: flex 0.4s ease, padding 0.4s ease; */
 }

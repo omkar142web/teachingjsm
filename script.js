@@ -256,21 +256,23 @@ if (savedLessonId) {
   const activeElement = document.getElementById(savedLessonId);
   
   if (activeElement) {
-    // 1. Set active state
+    //! 1. Set active state
     allLessons.forEach(el => el.classList.remove("active"));
     activeElement.classList.add("active");
 
-    // 2. THE FIX: Scroll ONLY the sidebar container
+    //! 2. THE FIX: Scroll ONLY the sidebar container
     // We calculate the distance from the top of the container to the element
     const container = document.querySelector(".sidebar-lesson-listing");
     
     if (container) {
       const elementTop = activeElement.offsetTop;
       const containerTop = container.offsetTop;
+      const centerOffset = container.clientHeight / 2;
       
-      // Move the container's scrollbar to that position
+      //! Move the container's scrollbar to that position
       container.scrollTo({
-        top: elementTop - containerTop, 
+        // top: elementTop - containerTop, 
+        top: elementTop - centerOffset,
         behavior: "smooth"
       });
     }
